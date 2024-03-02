@@ -21,6 +21,7 @@ dependencies:
   go_router: ^13.2.0
   injectable: ^2.3.2
   intl: ^0.18.1
+  logger: ^2.0.2+1
 
 dev_dependencies:
   bloc_test: ^9.1.4
