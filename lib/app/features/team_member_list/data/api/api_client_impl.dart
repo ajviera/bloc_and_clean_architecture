@@ -17,8 +17,11 @@ class ApiClientImpl implements ApiClient {
 
     teamMembers = List<TeamMemberEntity>.from(
         jsonResult.map((data) => TeamMemberEntity.fromJson(data)).toList());
-
-    return teamMembers;
+    return await Future.delayed(const Duration(seconds: 2)).then(
+      (_) {
+        return teamMembers;
+      },
+    );
   }
 
   @override

@@ -65,24 +65,31 @@ class TeamMemberListScreen extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        child: ListView.separated(
-          shrinkWrap: true,
-          separatorBuilder: (context, index) => const SizedBox(height: 8),
-          itemCount: teamMembers.length,
-          itemBuilder: (context, index) {
-            final member = teamMembers[index];
+        child: RefreshIndicator(
+          onRefresh: () async => _onRefreshPressed(context),
+          child: ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (context, index) => const SizedBox(height: 8),
+            itemCount: teamMembers.length,
+            itemBuilder: (context, index) {
+              final member = teamMembers[index];
 
-            return TeamMemberCard(
-              member: member,
-              deleteAction: () {
-                context.teamMemberListBloc.add(
-                  TeamMemberListEvent.deleteMember(teamMember: member),
-                );
-              },
-            );
-          },
+              return TeamMemberCard(
+                member: member,
+                deleteAction: () {
+                  context.teamMemberListBloc.add(
+                    TeamMemberListEvent.deleteMember(teamMember: member),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
+  }
+
+  void _onRefreshPressed(BuildContext context) {
+    context.teamMemberListBloc.add(const TeamMemberListEvent.started());
   }
 }
