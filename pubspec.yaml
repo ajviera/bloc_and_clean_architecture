@@ -33,6 +33,8 @@ dev_dependencies:
   injectable_generator: ^2.4.1
   intl_utils: ^2.8.7
   json_serializable: ^6.7.1
+  mockito: ^5.4.4
+  mocktail: ^1.0.3
 
 flutter:
   uses-material-design: true

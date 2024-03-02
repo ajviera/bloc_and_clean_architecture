@@ -18,7 +18,9 @@ class TeamMembersRepositoryImpl implements TeamMembersRepository {
   }
 
   @override
-  Future<List<TeamMemberEntity>> deleteTeamMember(TeamMemberEntity member) {
-    return _api.deleteTeamMember(memberRequest: DeleteMemberRequest(member.id));
+  Future<List<TeamMemberEntity>> deleteTeamMember(
+    DeleteMemberRequest deleteMemberRequest,
+  ) {
+    return _api.deleteTeamMember(memberRequest: deleteMemberRequest);
   }
 }

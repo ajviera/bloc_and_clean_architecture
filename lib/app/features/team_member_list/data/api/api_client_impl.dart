@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:team_members/app/features/team_member_list/data/api/api_client.dart';
+import 'package:team_members/app/features/team_member_list/data/services/file_service.dart';
 import 'package:team_members/app/features/team_member_list/domain/entities/team_member_entity.dart';
 import 'package:team_members/app/features/team_member_list/domain/use_cases/delete_member_request.dart';
 
@@ -12,7 +12,7 @@ class ApiClientImpl implements ApiClient {
 
   @override
   Future<List<TeamMemberEntity>> getTeamMembers() async {
-    final String response = await Service().getJson();
+    final String response = await FileService().getJson();
     final jsonResult = json.decode(response);
 
     teamMembers = List<TeamMemberEntity>.from(
@@ -32,12 +32,5 @@ class ApiClientImpl implements ApiClient {
         return teamMembers;
       },
     );
-  }
-}
-
-class Service {
-  Future<String> getJson() async {
-    final response = await rootBundle.loadString('lib/assets/files/team.json');
-    return response;
   }
 }
