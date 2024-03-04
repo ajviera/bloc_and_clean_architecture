@@ -1,26 +1,17 @@
 part of 'team_member_list_bloc.dart';
 
-abstract class TeamMemberListState extends Equatable {
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class TeamMemberListState with _$TeamMemberListState {
+  const factory TeamMemberListState({
+    @Default(Status.initial) Status status,
+    String? errorMessage,
+    @Default([]) List<TeamMemberEntity> teamMembers,
+  }) = _TeamMemberListState;
 }
 
-class TeamMemberListInitialState extends TeamMemberListState {}
-
-class TeamMemberListLoadingState extends TeamMemberListState {}
-
-class GetTeamMemberListState extends TeamMemberListState {
-  final List<TeamMemberEntity> teamMembers;
-  GetTeamMemberListState(this.teamMembers);
-
-  @override
-  List<Object> get props => [teamMembers];
-}
-
-class TeamMemberListErrorState extends TeamMemberListState {
-  final String message;
-  TeamMemberListErrorState(this.message);
-
-  @override
-  List<Object> get props => [message];
+enum Status {
+  initial,
+  loading,
+  failure,
+  success,
 }

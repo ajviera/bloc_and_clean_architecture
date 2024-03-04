@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "emptyMessage":
             MessageLookupByLibrary.simpleMessage("No more team members"),
+        "generalErrorMessage": MessageLookupByLibrary.simpleMessage("Error"),
         "title": MessageLookupByLibrary.simpleMessage("Team Members App")
       };
 }

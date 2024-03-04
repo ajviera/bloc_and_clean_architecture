@@ -13,38 +13,33 @@ class TeamMemberListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TeamMemberListBloc, TeamMemberListState>(
+    return BlocConsumer<TeamMemberListBloc, TeamMemberListState>(
       bloc: context.teamMemberListBloc,
+      listener: (_, __) {},
       builder: (context, state) {
-        return BlocConsumer<TeamMemberListBloc, TeamMemberListState>(
-          bloc: context.teamMemberListBloc,
-          listener: (_, __) {},
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(title: Text(S.of(context).title)),
-              body: _body(context, state),
-            );
-          },
+        return Scaffold(
+          appBar: AppBar(title: Text(S.of(context).title)),
+          body: _body(context, state),
         );
       },
     );
   }
 
-  Widget _body(BuildContext context, state) {
-    if (state is TeamMemberListLoadingState) {
+  Widget _body(BuildContext context, TeamMemberListState state) {
+    if (state.status == Status.loading) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
-    if (state is TeamMemberListErrorState) {
+    if (state.status == Status.failure) {
       return Center(
         child: Text(
-          state.message,
+          state.errorMessage ?? S.of(context).generalErrorMessage,
           textAlign: TextAlign.center,
         ),
       );
     }
-    if (state is GetTeamMemberListState) {
+    if (state.status == Status.success) {
       return state.teamMembers.isEmpty
           ? _emptyBodyWidget(context)
           : _bodyWidget(context, state.teamMembers);

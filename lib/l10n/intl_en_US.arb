@@ -1,5 +1,6 @@
 {
   "@@locale": "en_US",
   "title": "Team Members App",
-  "emptyMessage": "No more team members"
+  "emptyMessage": "No more team members",
+  "generalErrorMessage": "Error"
 }

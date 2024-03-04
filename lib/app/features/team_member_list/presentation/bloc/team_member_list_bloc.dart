@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:team_members/app/common/mixins/error_handler_mixin.dart';
@@ -21,7 +20,7 @@ class TeamMemberListBloc extends Bloc<TeamMemberListEvent, TeamMemberListState>
   TeamMemberListBloc(
     this._getMembersUseCase,
     this._deleteMembersUseCase,
-  ) : super(TeamMemberListInitialState()) {
+  ) : super(const TeamMemberListState()) {
     on<_TeamMemberListEventStarted>(_onTeamMembersEventStarted);
     on<_TeamMemberListDeleteEventStarted>(_onTeamMembersDeleteEventStarted);
   }
@@ -29,12 +28,15 @@ class TeamMemberListBloc extends Bloc<TeamMemberListEvent, TeamMemberListState>
   FutureOr<void> _onTeamMembersEventStarted(_TeamMemberListEventStarted event,
       Emitter<TeamMemberListState> emit) async {
     try {
-      emit(TeamMemberListLoadingState());
+      emit(state.copyWith(status: Status.loading));
       List<TeamMemberEntity> teamMembers = await _getMembersUseCase.call();
-      emit(GetTeamMemberListState(teamMembers));
+      emit(state.copyWith(status: Status.success, teamMembers: teamMembers));
     } catch (e) {
       logError(e);
-      emit(TeamMemberListErrorState("Something Went Wrong"));
+      emit(
+        state.copyWith(
+            status: Status.failure, errorMessage: "Something Went Wrong"),
+      );
     }
   }
 
@@ -42,16 +44,19 @@ class TeamMemberListBloc extends Bloc<TeamMemberListEvent, TeamMemberListState>
       _TeamMemberListDeleteEventStarted event,
       Emitter<TeamMemberListState> emit) async {
     try {
-      emit(TeamMemberListLoadingState());
+      emit(state.copyWith(status: Status.loading));
 
       List<TeamMemberEntity> teamMembers = await _deleteMembersUseCase.call(
         DeleteMemberRequest(event.teamMember.id),
       );
 
-      emit(GetTeamMemberListState(teamMembers));
+      emit(state.copyWith(status: Status.success, teamMembers: teamMembers));
     } catch (e) {
       logError(e);
-      emit(TeamMemberListErrorState("Something Went Wrong"));
+      emit(
+        state.copyWith(
+            status: Status.failure, errorMessage: "Something Went Wrong"),
+      );
     }
   }
 }

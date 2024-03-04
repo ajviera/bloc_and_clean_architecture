@@ -337,3 +337,176 @@ abstract class _TeamMemberListDeleteEventStarted
           _$TeamMemberListDeleteEventStartedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$TeamMemberListState {
+  Status get status => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+  List<TeamMemberEntity> get teamMembers => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TeamMemberListStateCopyWith<TeamMemberListState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TeamMemberListStateCopyWith<$Res> {
+  factory $TeamMemberListStateCopyWith(
+          TeamMemberListState value, $Res Function(TeamMemberListState) then) =
+      _$TeamMemberListStateCopyWithImpl<$Res, TeamMemberListState>;
+  @useResult
+  $Res call(
+      {Status status,
+      String? errorMessage,
+      List<TeamMemberEntity> teamMembers});
+}
+
+/// @nodoc
+class _$TeamMemberListStateCopyWithImpl<$Res, $Val extends TeamMemberListState>
+    implements $TeamMemberListStateCopyWith<$Res> {
+  _$TeamMemberListStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? errorMessage = freezed,
+    Object? teamMembers = null,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teamMembers: null == teamMembers
+          ? _value.teamMembers
+          : teamMembers // ignore: cast_nullable_to_non_nullable
+              as List<TeamMemberEntity>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TeamMemberListStateImplCopyWith<$Res>
+    implements $TeamMemberListStateCopyWith<$Res> {
+  factory _$$TeamMemberListStateImplCopyWith(_$TeamMemberListStateImpl value,
+          $Res Function(_$TeamMemberListStateImpl) then) =
+      __$$TeamMemberListStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {Status status,
+      String? errorMessage,
+      List<TeamMemberEntity> teamMembers});
+}
+
+/// @nodoc
+class __$$TeamMemberListStateImplCopyWithImpl<$Res>
+    extends _$TeamMemberListStateCopyWithImpl<$Res, _$TeamMemberListStateImpl>
+    implements _$$TeamMemberListStateImplCopyWith<$Res> {
+  __$$TeamMemberListStateImplCopyWithImpl(_$TeamMemberListStateImpl _value,
+      $Res Function(_$TeamMemberListStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? errorMessage = freezed,
+    Object? teamMembers = null,
+  }) {
+    return _then(_$TeamMemberListStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teamMembers: null == teamMembers
+          ? _value._teamMembers
+          : teamMembers // ignore: cast_nullable_to_non_nullable
+              as List<TeamMemberEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TeamMemberListStateImpl implements _TeamMemberListState {
+  const _$TeamMemberListStateImpl(
+      {this.status = Status.initial,
+      this.errorMessage,
+      final List<TeamMemberEntity> teamMembers = const []})
+      : _teamMembers = teamMembers;
+
+  @override
+  @JsonKey()
+  final Status status;
+  @override
+  final String? errorMessage;
+  final List<TeamMemberEntity> _teamMembers;
+  @override
+  @JsonKey()
+  List<TeamMemberEntity> get teamMembers {
+    if (_teamMembers is EqualUnmodifiableListView) return _teamMembers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_teamMembers);
+  }
+
+  @override
+  String toString() {
+    return 'TeamMemberListState(status: $status, errorMessage: $errorMessage, teamMembers: $teamMembers)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TeamMemberListStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
+            const DeepCollectionEquality()
+                .equals(other._teamMembers, _teamMembers));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status, errorMessage,
+      const DeepCollectionEquality().hash(_teamMembers));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TeamMemberListStateImplCopyWith<_$TeamMemberListStateImpl> get copyWith =>
+      __$$TeamMemberListStateImplCopyWithImpl<_$TeamMemberListStateImpl>(
+          this, _$identity);
+}
+
+abstract class _TeamMemberListState implements TeamMemberListState {
+  const factory _TeamMemberListState(
+      {final Status status,
+      final String? errorMessage,
+      final List<TeamMemberEntity> teamMembers}) = _$TeamMemberListStateImpl;
+
+  @override
+  Status get status;
+  @override
+  String? get errorMessage;
+  @override
+  List<TeamMemberEntity> get teamMembers;
+  @override
+  @JsonKey(ignore: true)
+  _$$TeamMemberListStateImplCopyWith<_$TeamMemberListStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
