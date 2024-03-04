@@ -6,6 +6,7 @@ import 'package:team_members/app/features/team_member_list/domain/use_cases/get_
 import 'package:team_members/app/features/team_member_list/presentation/bloc/team_member_list_bloc.dart';
 import 'package:team_members/app/features/team_member_list/presentation/screens/team_member_list_screen.dart';
 
+// The BLoC is initialized here
 class TeamMemberListProvider extends StatelessWidget {
   const TeamMemberListProvider({super.key});
 

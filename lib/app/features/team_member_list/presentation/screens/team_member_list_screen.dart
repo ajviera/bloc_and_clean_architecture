@@ -13,9 +13,8 @@ class TeamMemberListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<TeamMemberListBloc, TeamMemberListState>(
+    return BlocBuilder<TeamMemberListBloc, TeamMemberListState>(
       bloc: context.teamMemberListBloc,
-      listener: (_, __) {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text(S.of(context).title)),

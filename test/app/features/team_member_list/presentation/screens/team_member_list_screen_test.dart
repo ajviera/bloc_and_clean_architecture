@@ -53,87 +53,93 @@ void main() {
     );
   }
 
-  testWidgets('Display content', (tester) async {
-    whenListen(
-      mockTeamMemberListBloc,
-      Stream.fromIterable(<TeamMemberListState>[]),
-      initialState: const TeamMemberListState(
-        status: Status.success,
-        teamMembers: [],
-      ),
-    );
-
-    await tester.pumpWidget(
-      testApp(
-        const TeamMemberListScreen(),
+  group('TeamMemberListScreen', () {
+    testWidgets('Display empty message', (tester) async {
+      whenListen(
         mockTeamMemberListBloc,
-      ),
-    );
-    await tester.pumpAndSettle();
+        Stream.fromIterable(<TeamMemberListState>[]),
+        initialState: const TeamMemberListState(
+          status: Status.success,
+          teamMembers: [],
+        ),
+      );
 
-    expectLater(find.text(s.emptyMessage), findsOneWidget);
-  });
+      await tester.pumpWidget(
+        testApp(
+          const TeamMemberListScreen(),
+          mockTeamMemberListBloc,
+        ),
+      );
+      await tester.pumpAndSettle();
 
-  testWidgets('Display loading indicator', (tester) async {
-    whenListen(
-      mockTeamMemberListBloc,
-      Stream.fromIterable(<TeamMemberListState>[]),
-      initialState: const TeamMemberListState(
-        status: Status.loading,
-      ),
-    );
+      expectLater(find.text(s.emptyMessage), findsOneWidget);
+    });
 
-    await tester.pumpWidget(
-      testApp(
-        const TeamMemberListScreen(),
+    testWidgets('Display loading indicator', (tester) async {
+      whenListen(
         mockTeamMemberListBloc,
-      ),
-    );
-    await tester.pump(const Duration(seconds: 2));
+        Stream.fromIterable(<TeamMemberListState>[]),
+        initialState: const TeamMemberListState(
+          status: Status.loading,
+        ),
+      );
 
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  });
+      await tester.pumpWidget(
+        testApp(
+          const TeamMemberListScreen(),
+          mockTeamMemberListBloc,
+        ),
+      );
+      await tester.pump(const Duration(seconds: 2));
 
-  testWidgets('Display error message', (tester) async {
-    whenListen(
-      mockTeamMemberListBloc,
-      Stream.fromIterable(<TeamMemberListState>[]),
-      initialState: TeamMemberListState(
-        status: Status.failure,
-        errorMessage: s.generalErrorMessage,
-      ),
-    );
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    });
 
-    await tester.pumpWidget(
-      testApp(
-        const TeamMemberListScreen(),
+    testWidgets('Display error message', (tester) async {
+      whenListen(
         mockTeamMemberListBloc,
-      ),
-    );
-    await tester.pump(const Duration(seconds: 2));
+        Stream.fromIterable(<TeamMemberListState>[]),
+        initialState: TeamMemberListState(
+          status: Status.failure,
+          errorMessage: s.generalErrorMessage,
+        ),
+      );
 
-    expectLater(find.text(s.generalErrorMessage), findsOneWidget);
-  });
+      await tester.pumpWidget(
+        testApp(
+          const TeamMemberListScreen(),
+          mockTeamMemberListBloc,
+        ),
+      );
+      await tester.pump(const Duration(seconds: 2));
 
-  testWidgets('Display content list', (tester) async {
-    whenListen(
-      mockTeamMemberListBloc,
-      Stream.fromIterable(<TeamMemberListState>[]),
-      initialState: TeamMemberListState(
-        status: Status.success,
-        teamMembers: teamMembersList,
-      ),
-    );
+      expectLater(find.text(s.generalErrorMessage), findsOneWidget);
+    });
 
-    await tester.pumpWidget(
-      testApp(
-        const TeamMemberListScreen(),
+    testWidgets('Display content list', (tester) async {
+      whenListen(
         mockTeamMemberListBloc,
-      ),
-    );
-    await tester.pump(const Duration(seconds: 2));
+        Stream.fromIterable(<TeamMemberListState>[]),
+        initialState: TeamMemberListState(
+          status: Status.success,
+          teamMembers: teamMembersList,
+        ),
+      );
 
-    expectLater(find.byType(TeamMemberCard), findsAtLeast(1));
-    expectLater(find.byType(ListView), findsOneWidget);
+      await tester.pumpWidget(
+        testApp(
+          const TeamMemberListScreen(),
+          mockTeamMemberListBloc,
+        ),
+      );
+      await tester.pump(const Duration(seconds: 2));
+
+      expectLater(find.byType(TeamMemberCard), findsAtLeast(1));
+      expectLater(find.byType(ListView), findsOneWidget);
+    });
+
+    testWidgets('route', (WidgetTester tester) async {
+      expect(TeamMemberListScreen.route, '/');
+    });
   });
 }

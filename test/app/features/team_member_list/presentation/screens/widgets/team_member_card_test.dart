@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:team_members/app/common/ui/widgets/trash_button.dart';
+import 'package:team_members/app/common/design_system/custom_widgets/trash_button.dart';
 import 'package:team_members/app/features/team_member_list/domain/entities/team_member_entity.dart';
 import 'package:team_members/app/features/team_member_list/presentation/screens/widgets/team_member_card.dart';
 
@@ -27,17 +27,19 @@ void main() {
     );
   }
 
-  testWidgets('Display content', (tester) async {
-    await tester.pumpWidget(
-      testApp(
-        TeamMemberCard(
-          member: member.copyWith(avatar: ''),
-          deleteAction: () {},
+  group('TeamMemberCard', () {
+    testWidgets('Display content', (tester) async {
+      await tester.pumpWidget(
+        testApp(
+          TeamMemberCard(
+            member: member.copyWith(avatar: ''),
+            deleteAction: () {},
+          ),
         ),
-      ),
-    );
-    await tester.pumpAndSettle();
+      );
+      await tester.pumpAndSettle();
 
-    expect(find.byType(TrashButton), findsOneWidget);
+      expect(find.byType(TrashButton), findsOneWidget);
+    });
   });
 }

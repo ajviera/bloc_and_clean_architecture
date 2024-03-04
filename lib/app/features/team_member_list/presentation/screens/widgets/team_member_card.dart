@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:team_members/app/common/ui/custom_colors.dart';
-import 'package:team_members/app/common/ui/widgets/avatar.dart';
-import 'package:team_members/app/common/ui/widgets/trash_button.dart';
+import 'package:team_members/app/common/design_system/custom_colors.dart';
+import 'package:team_members/app/common/design_system/custom_widgets/avatar.dart';
+import 'package:team_members/app/common/design_system/custom_widgets/trash_button.dart';
 import 'package:team_members/app/features/team_member_list/domain/entities/team_member_entity.dart';
 
 class TeamMemberCard extends StatelessWidget {

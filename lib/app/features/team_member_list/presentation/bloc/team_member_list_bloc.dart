@@ -32,10 +32,15 @@ class TeamMemberListBloc extends Bloc<TeamMemberListEvent, TeamMemberListState>
       List<TeamMemberEntity> teamMembers = await _getMembersUseCase.call();
       emit(state.copyWith(status: Status.success, teamMembers: teamMembers));
     } catch (e) {
+      // The original error is logged, but a user-friendly error is returned to
+      // the UI. This could be changed depending on how you want to display
+      // the error.
       logError(e);
       emit(
         state.copyWith(
-            status: Status.failure, errorMessage: "Something Went Wrong"),
+          status: Status.failure,
+          errorMessage: "Something Went Wrong",
+        ),
       );
     }
   }
@@ -52,10 +57,15 @@ class TeamMemberListBloc extends Bloc<TeamMemberListEvent, TeamMemberListState>
 
       emit(state.copyWith(status: Status.success, teamMembers: teamMembers));
     } catch (e) {
+      // The original error is logged, but a user-friendly error is returned to
+      // the UI. This could be changed depending on how you want to display
+      // the error.
       logError(e);
       emit(
         state.copyWith(
-            status: Status.failure, errorMessage: "Something Went Wrong"),
+          status: Status.failure,
+          errorMessage: "Something Went Wrong",
+        ),
       );
     }
   }

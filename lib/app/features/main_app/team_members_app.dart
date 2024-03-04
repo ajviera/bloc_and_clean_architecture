@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:team_members/app/features/main_app/app_router.dart';
 import 'package:team_members/generated/l10n.dart';
 
+// Main app
 class TeamMembersApp extends StatelessWidget {
   const TeamMembersApp({super.key});
 

@@ -1,6 +1,6 @@
 # Challenge: Team Members app
 
-The main objective of this exercise is to practice creating a project using the following packages:
+The main objective of this exercise is to create a project using the following packages:
 
 - Clean architecture
 - BLoC (package [flutter_bloc](https://pub.dev/packages/flutter_bloc))
@@ -9,9 +9,6 @@ The main objective of this exercise is to practice creating a project using the 
 - Dependency Injection (package [injectable](https://pub.dev/packages/injectable))
 - Go Router (package [go_router](https://pub.dev/packages/go_router))
 - Intl (packages [intl](https://pub.dev/packages/intl) - [intl_utils](https://pub.dev/packages/intl_utils))
-
-[This challenge was used as a guide](
-https://docs.google.com/document/d/1cegH-q7oACtvJXKJ3sOpPYXa0d9oRvyFbRcykJwPcmc/edit)
 
 ## Getting Started
 
